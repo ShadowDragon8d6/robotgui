@@ -125,7 +125,6 @@ def usermenu(username,password,login):
   menus = Tk()
   menus.geometry("600x400")
   ans = checking(username,password)
-  print(ans)
   name = ans[0][1] + " " + ans[0][2]
   #welcomes them
   menus.title("WELCOME " + name.upper())
@@ -152,47 +151,47 @@ def usermenu(username,password,login):
 
   #adds to log
   def log(message):
-    current_text = log_label.cget("text") #cget GETS THE CURRENT VALUE
-    new_text = f"{message}\n{current_text}"
-    log_label.config(text=new_text)
+    texts = loglabel.cget("text") #cget GETS THE CURRENT VALUE
+    new = message + "\n" + str(texts)
+    loglabel.config(text=new)
 
 
 
   # Create frames for each part of the grid
-  top_left_frame = Frame(menus, width=400, height=300)
-  bottomright_frame = Frame(menus, bg="black", width=400, height=300)
-  bottom_left_frame = Frame(menus,bg = "blue", borderwidth=2, width=400, height=300)
-  top_right_frame = Frame(menus, width=400, height=300)
+  topleft = Frame(menus, width=400, height=300)
+  bottomright = Frame(menus, bg="black", width=400, height=300)
+  bottomleft = Frame(menus,bg = "blue", borderwidth=2, width=400, height=300)
+  topright = Frame(menus, width=400, height=300)
 
-  top_left_frame.grid(row=0, column=0, sticky="nsew")
-  bottomright_frame.grid(row=0, column=1, sticky="nsew")
-  bottom_left_frame.grid(row=1, column=0, sticky="nsew")
-  top_right_frame.grid(row=1, column=1, sticky="nsew")
+  topleft.grid(row=0, column=0, sticky="nsew")
+  bottomright.grid(row=0, column=1, sticky="nsew")
+  bottomleft.grid(row=1, column=0, sticky="nsew")
+  topright.grid(row=1, column=1, sticky="nsew")
 
   # Places labels and buttons in the frames
-  camera_label = Label(top_left_frame, text="CAMERA")
-  camera_label.pack()
+  cameralabel = Label(topleft, text="THE CAMERA")
+  cameralabel.pack()
 
-  log_label = Label(bottomright_frame, text=f"Welcome", fg="white", bg="black", anchor="nw")
-  log_label.pack(fill="both", expand=True)
+  loglabel = Label(bottomright, text="Welcome", fg="white", bg="black", anchor="nw")
+  loglabel.pack(fill="both", expand=True)
 
 
-  button_frame = Frame(bottomright_frame, bg="black")
-  button_frame.pack(side="bottom", fill="both", expand=True)
+  buttonframe = Frame(bottomright, bg="black")
+  buttonframe.pack(side="bottom", fill="both", expand=True)
 
-  forward_button = Button(top_right_frame, text="   ^   \nForward", command=forward)
-  backward_button = Button(top_right_frame, text="Backward\n   v   ", command=backward)
-  left_button = Button(top_right_frame, text="<   Left", command=left)
-  right_button = Button(top_right_frame, text="Right   >", command=right)
-  stop_button = Button(top_right_frame, text="   Stop   ", command=stop)
-  logout_button = Button(top_right_frame, text="   Logout   ", command=logout)
+  forwardbutton = Button(topright, text="   ^   \nForward", command=forward)
+  backward = Button(topright, text="Backward\n   v   ", command=backward)
+  leftbutton = Button(topright, text="<   Left", command=left)
+  rightbutton = Button(topright, text="Right   >", command=right)
+  stopbutton = Button(topright, text="   Stop   ", command=stop)
+  logoutbutton = Button(topright, text="   Logout   ", command=logout)
 
-  forward_button.grid(row=0, column=1)
-  backward_button.grid(row=2, column=1)
-  left_button.grid(row=1, column=0)
-  right_button.grid(row=1, column=2)
-  stop_button.grid(row=1, column=1)
-  logout_button.grid(row=2,column=2)
+  forwardbutton.grid(row=0, column=1)
+  backward.grid(row=2, column=1)
+  leftbutton.grid(row=1, column=0)
+  rightbutton.grid(row=1, column=2)
+  stopbutton.grid(row=1, column=1)
+  logoutbutton.grid(row=2,column=2)
 
   # Adjust row and column weights to make the grid resizable
   menus.grid_rowconfigure(0, weight=1)
@@ -201,8 +200,8 @@ def usermenu(username,password,login):
   menus.grid_columnconfigure(1, weight=1)
 
   # Make the log area fill the available space
-  bottomright_frame.pack_propagate(False) 
-  log_label.pack(fill="both", expand=True)
+  bottomright.pack_propagate(False) 
+  loglabel.pack(fill="both", expand=True)
 
   menus.mainloop()
   
